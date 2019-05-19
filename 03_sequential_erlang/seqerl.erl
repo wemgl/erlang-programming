@@ -1,6 +1,6 @@
 -module(seqerl).
 -author("wembleyleach").
--export([sum/1, sum/2, create/1, reverse_create/1]).
+-export([sum/1, sum/2, create/1, reverse_create/1, ints_between/1, even_ints_between/1]).
 
 
 sum(N) -> sum_acc(N, 0).
@@ -29,3 +29,21 @@ reverse_create(N) when is_integer(N) -> reverse_create_acc(N, []).
 
 reverse_create_acc(0, Acc) -> lists:reverse(Acc);
 reverse_create_acc(N, Acc) -> reverse_create_acc(N - 1, [N|Acc]).
+
+
+ints_between(N) -> ints_between(1, N).
+
+ints_between(C, N) when C =< N ->
+  io:format("Number: ~p~n", [C]),
+  ints_between(C+1, N);
+ints_between(C, N) when C > N -> io:format("~s", [""]).
+
+
+even_ints_between(N) -> even_ints_between(1, N).
+
+even_ints_between(C, N) when C rem 2 /= 0 ->
+  even_ints_between(C+1, N);
+even_ints_between(C, N) when C =< N ->
+  io:format("Number: ~p~n", [C]),
+  even_ints_between(C+1, N);
+even_ints_between(C, N) when C > N -> io:format("~s", [""]).
